@@ -1,5 +1,5 @@
 {
-  "name": "inferno-boilerplate",
+  "name": "chess-inferno",
   "version": "0.0.1",
   "description": "A basic boilerplate to get you started with Inferno + Inferno Router + JSX",
   "main": "src/index.js",
