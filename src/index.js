@@ -128,7 +128,7 @@
 {/*render(<MyWebsite />, document.getElementById('app'));*/}
 
 import { render, Component } from 'inferno';
-console.log('render', render)
+
 class MyComponent extends Component {
 	constructor(props) {
 		super(props);
