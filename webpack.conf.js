@@ -8,9 +8,11 @@ module.exports = {
 		publicPath: 'http://localhost:8080/'
 	},
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.js$/,
-			loader: 'babel-loader'
+			use: {
+				loader: 'babel-loader'
+			}
 		}]
 	},
 	devServer: {
@@ -28,6 +30,11 @@ module.exports = {
 		}
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.DefinePlugin({
+			'process.env': {
+				'NODE_ENV': JSON.stringify('production')
+			}
+		})
 	]
 };
