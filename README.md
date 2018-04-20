@@ -1,4 +1,4 @@
-# inferno-boilerplate
+# chess-inferno app
 
 ## Overview
 
