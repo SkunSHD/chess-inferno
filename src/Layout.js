@@ -1,11 +1,11 @@
 import { Component } from 'inferno';
 
-// function connectToStores(currentClass) {
-// 	console.log('%%---> currentClass', currentClass)
-//
-// }
-//
-// @connectToStores
+function connectToStores(currentClass) {
+	console.log('%%---> currentClass', currentClass)
+
+}
+
+@connectToStores
 class Layout extends Component {
 	constructor(props) {
 		super(props);
