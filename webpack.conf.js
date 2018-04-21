@@ -36,6 +36,9 @@ module.exports = {
 			}
 		}
 	},
+	externals: {
+		'firebase': 'firebase'
+	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({

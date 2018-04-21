@@ -1,11 +1,10 @@
 import { Component } from 'inferno';
+// import {Dispatcher} from 'flux';
+// import { EventEmitter } from 'events';
 
-function connectToStores(currentClass) {
-	console.log('%%---> currentClass', currentClass)
+import * as firebase from 'firebase';
+// console.log('%%---> firebase', firebase.firestore)
 
-}
-
-@connectToStores
 class Layout extends Component {
 	constructor(props) {
 		super(props);
