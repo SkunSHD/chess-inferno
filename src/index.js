@@ -1,6 +1,5 @@
 import { render } from 'inferno';
-import Routes from 'Routes'
-
+import Routes from 'Routes';
 
 
 
