@@ -1,6 +1,6 @@
 import { render } from 'inferno';
 import { BrowserRouter, Link, Route, Switch } from 'inferno-router';
-
+// source: https://reacttraining.com/react-router/web/example/url-params
 
 const NoMatch = ({ children, match }) => <div>404 Not Found</div>
 
