@@ -1,4 +1,4 @@
-import { register } from 'Dispatcher';
+import { register } from 'utils/dispatcher';
 import { createStore } from 'utils/App.utils';
 
 
@@ -19,3 +19,5 @@ UserStore.dispatchToken = register(action => {
 			break;
 	}
 });
+
+export default UserStore;

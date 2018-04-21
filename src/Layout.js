@@ -8,6 +8,7 @@ import db from 'db';
 const stores = [UserStore];
 
 function getState(props) {
+	console.log('UserStore', UserStore)
 	return {
 		user: UserStore.getUser(),
 		// ...props ???
@@ -21,7 +22,6 @@ class Layout extends Component {
 	constructor(props) {
 		super(props);
 		this.state = getState(props);
-
 	}
 
 	onComponentWillMount() {

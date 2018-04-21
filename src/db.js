@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-// console.log('%%---> firebase', firebase.firestore)
 
 const config = {
 	apiKey: "AIzaSyCsaEXo297Mo1Js08CUQ9DzWSYqJDQBdRo",
@@ -16,7 +15,7 @@ firebase.initializeApp(config);
 
 const db = {
 	firestore: firebase.firestore()
-}
+};
 
 
 firebase.auth().onAuthStateChanged(function (_user) {
