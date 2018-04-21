@@ -1,3 +1,4 @@
+var path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
@@ -14,6 +15,12 @@ module.exports = {
 				loader: 'babel-loader'
 			}
 		}]
+	},
+	resolve: {
+		modules: [
+			path.resolve(__dirname, "src"),
+			"node_modules"
+		]
 	},
 	devServer: {
 		contentBase: './',
