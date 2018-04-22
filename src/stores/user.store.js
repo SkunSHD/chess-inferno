@@ -1,12 +1,20 @@
+import { StoreBasic } from 'utils/App.utils';
 import { register } from 'utils/dispatcher';
-import { createStore } from 'utils/App.utils';
+import { EventEmitter } from 'events';
 
 
-const UserStore = createStore({
-	user: { vasya: "pervui" },
-	getUser() { return this.user; }
-});
 
+class UserStore extends StoreBasic {
+
+	_user = { name: 'Vasya' };
+
+	get user() { return this._user; };
+
+	set user(newUser) {
+		this._user = newUser;
+		this.emit();
+	};
+}
 
 UserStore.dispatchToken = register(action => {
 	action = action.type;
@@ -19,5 +27,7 @@ UserStore.dispatchToken = register(action => {
 			break;
 	}
 });
+const userStore = new UserStore();
+window.userStore = userStore;
 
-export default UserStore;
+export default userStore;

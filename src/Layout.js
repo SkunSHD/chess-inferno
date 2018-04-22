@@ -4,14 +4,11 @@ import connectToStores from 'utils/connectToStores.mixin';
 import UserStore from 'stores/user.store'
 import db from 'db';
 
-
 const stores = [UserStore];
 
-function getState(props) {
-	console.log('UserStore', UserStore)
+function getState() {
 	return {
-		user: UserStore.getUser(),
-		// ...props ???
+		user: UserStore.user
 	}
 }
 
@@ -21,27 +18,25 @@ class Layout extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = getState(props);
+		this.state = getState();
 	}
 
-	onComponentWillMount() {
+	componentWillMount() {
 		stores.forEach(store =>
-			store.addChangeListener(this.handleStoresChanged)
+			store.on('change', this.handleStoresChanged)
 		);
 	}
 
 
-	onComponentWillUnmount() {
+	componentWillUnmount() {
 		stores.forEach(store =>
-			store.removeChangeListener(this.handleStoresChanged)
+			store.removeListener('change', this.handleStoresChanged)
 		);
 	}
 
 
 	handleStoresChanged = ()=> {
-		console.log('%%---> handleStoresChanged')
-
-		this.setState(getState(this.props));
+		this.setState(getState());
 	};
 
 
@@ -49,7 +44,7 @@ class Layout extends Component {
 		return (
 			<div>
 				<h1>Layout!</h1>
-				{/*<span>User is at: { this.state.user && this.state.user.name }</span>*/}
+				<span>User is: { this.state.user && this.state.user.name }</span>
 			</div>
 		);
 	}
