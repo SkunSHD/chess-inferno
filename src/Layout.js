@@ -1,7 +1,9 @@
 import { Component } from 'inferno';
 import connectToStores from 'utils/connectToStores.mixin';
 // Stores
-import UserStore from 'stores/user.store'
+import UserStore from 'stores/user.store';
+// db
+import db from 'db';
 
 
 function getState() {

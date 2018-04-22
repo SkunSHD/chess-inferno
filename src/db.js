@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import UserActions from 'actions/user.actions'
 
 const config = {
 	apiKey: "AIzaSyCsaEXo297Mo1Js08CUQ9DzWSYqJDQBdRo",
@@ -20,19 +21,15 @@ const db = {
 
 firebase.auth().onAuthStateChanged(function (_user) {
 	if (_user) {
-		// console.log('%%---> _user', _user)
-		// user = _user;
-		// app.run('#auth');
-		// app.run('route', document.location.hash);
+		const formattedUser = { name: _user.displayName };
+		UserActions.loginUser(formattedUser);
 	} else {
-		// user = null;
-		// app.run('#auth');
+		UserActions.logoutUser();
 	}
 });
 
 // connect fireBaseUi source here:
 // https://github.com/SkunSHD/chessrun/blob/master/firebase-auth.tsx
-
 
 
 export default db;

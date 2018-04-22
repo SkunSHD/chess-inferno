@@ -15,19 +15,19 @@ class UserStore extends StoreBasic {
 	};
 }
 
+const userStore = new UserStore();
 
-UserStore.dispatchToken = register(action => {
-	action = action.type;
 
-	switch (action) {
+register(action => {
+	switch (action.type) {
+		case 'USER-LOGIN-SUCCESS':
+			userStore.user = action.user;
+			break;
 
-		case 'USER-GET-SUCCESS':
-			UserStore.user = action.user;
-			UserStore.emit();
+		case 'USER-LOGOUT-SUCCESS':
+			userStore.user = null;
 			break;
 	}
 });
-const userStore = new UserStore();
-window.userStore = userStore;
 
 export default userStore;
