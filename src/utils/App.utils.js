@@ -17,3 +17,23 @@ export class StoreBasic extends EventEmitter {
 		super.removeListener(this.CHANGE_EVENT, callback);
 	}
 }
+
+
+export function createStore(target) {
+	const CHANGE_EVENT = 'change';
+	const emitter = new EventEmitter();
+
+	return Object.assign(target, {
+		emitChange() {
+			emitter.emit(CHANGE_EVENT);
+		},
+
+		addChangeListener(callback) {
+			emitter.on(CHANGE_EVENT, callback);
+		},
+
+		removeChangeListener(callback) {
+			emitter.removeListener(CHANGE_EVENT, callback);
+		}
+	});
+}
