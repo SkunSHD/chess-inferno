@@ -5,7 +5,7 @@ import { EventEmitter } from 'events';
 
 const userStore = new class extends StoreBasic {
 
-	_user = { name: 'Vasya' };
+	_user = null;
 
 	get user() { return this._user; };
 
