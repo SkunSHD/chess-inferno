@@ -1,8 +1,9 @@
 import { Component } from 'inferno';
-import connectToStores from 'utils/connectToStores.mixin';
 // Stores
 import UserStore from 'stores/user.store'
-import db from 'db';
+// Utils
+import ConnectToStores from 'utils/ConnectToStores'
+
 
 const stores = [UserStore];
 
@@ -13,31 +14,13 @@ function getState() {
 }
 
 
-// @connectToStores
-class Layout extends Component {
+class Layout extends ConnectToStores {
 
 	constructor(props) {
 		super(props);
 		this.state = getState();
+		this.connectToStores(stores, getState);
 	}
-
-	componentWillMount() {
-		stores.forEach(store =>
-			store.on('change', this.handleStoresChanged)
-		);
-	}
-
-
-	componentWillUnmount() {
-		stores.forEach(store =>
-			store.removeListener('change', this.handleStoresChanged)
-		);
-	}
-
-
-	handleStoresChanged = ()=> {
-		this.setState(getState());
-	};
 
 
 	render() {

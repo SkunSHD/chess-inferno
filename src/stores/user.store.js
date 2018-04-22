@@ -3,7 +3,6 @@ import { register } from 'utils/dispatcher';
 import { EventEmitter } from 'events';
 
 
-
 class UserStore extends StoreBasic {
 
 	_user = { name: 'Vasya' };
@@ -16,6 +15,7 @@ class UserStore extends StoreBasic {
 	};
 }
 
+
 UserStore.dispatchToken = register(action => {
 	action = action.type;
 
@@ -23,11 +23,9 @@ UserStore.dispatchToken = register(action => {
 
 		case 'USER-GET-SUCCESS':
 			UserStore.user = action.user;
-			UserStore.emitChange();
+			UserStore.emit();
 			break;
 	}
 });
-const userStore = new UserStore();
-window.userStore = userStore;
 
-export default userStore;
+export default new UserStore();

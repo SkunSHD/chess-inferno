@@ -20,7 +20,7 @@ const db = {
 
 firebase.auth().onAuthStateChanged(function (_user) {
 	if (_user) {
-		console.log('%%---> _user', _user)
+		// console.log('%%---> _user', _user)
 		// user = _user;
 		// app.run('#auth');
 		// app.run('route', document.location.hash);
