@@ -16,5 +16,4 @@ export class StoreBasic extends EventEmitter {
 	removeChangeListener(callback) {
 		super.removeListener(this.CHANGE_EVENT, callback);
 	}
-
 }

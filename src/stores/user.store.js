@@ -3,7 +3,7 @@ import { register } from 'utils/dispatcher';
 import { EventEmitter } from 'events';
 
 
-class UserStore extends StoreBasic {
+const userStore = new class extends StoreBasic {
 
 	_user = { name: 'Vasya' };
 
@@ -13,9 +13,8 @@ class UserStore extends StoreBasic {
 		this._user = newUser;
 		this.emit();
 	};
-}
+};
 
-const userStore = new UserStore();
 
 
 register(action => {
@@ -29,5 +28,6 @@ register(action => {
 			break;
 	}
 });
+
 
 export default userStore;
