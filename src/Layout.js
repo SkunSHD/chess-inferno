@@ -1,11 +1,8 @@
 import { Component } from 'inferno';
+import connectToStores from 'utils/connectToStores.mixin';
 // Stores
 import UserStore from 'stores/user.store'
-// Utils
-import ConnectToStores from 'utils/ConnectToStores'
 
-
-const stores = [UserStore];
 
 function getState() {
 	return {
@@ -14,12 +11,13 @@ function getState() {
 }
 
 
-class Layout extends ConnectToStores {
+@connectToStores
+class Layout extends Component {
 
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.state = getState();
-		this.connectToStores(stores, getState);
+		this.connectToStores([UserStore], getState);
 	}
 
 

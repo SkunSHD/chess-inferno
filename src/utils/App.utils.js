@@ -10,7 +10,7 @@ export class StoreBasic extends EventEmitter {
 	}
 
 	addChangeListener(callback) {
-		super.on(this.CHANGE_EVENT, callback);
+		super.on(this.CHANGE_EVENT, calwlback);
 	}
 
 	removeChangeListener(callback) {

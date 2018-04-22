@@ -27,5 +27,7 @@ UserStore.dispatchToken = register(action => {
 			break;
 	}
 });
+const userStore = new UserStore();
+window.userStore = userStore;
 
-export default new UserStore();
+export default userStore;

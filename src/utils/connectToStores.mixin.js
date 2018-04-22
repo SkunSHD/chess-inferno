@@ -1,14 +1,25 @@
 export default function connectToStores(target) {
+  target.prototype.connectToStores = function(stores, getState) {
 
-  // const componentDidMountTarget = target.prototype.componentDidMount;
-  // target.prototype.componentDidMount = (...args) => {
-  //   console.log("did mount wrapper " + args);
-  //   return componentDidMountTarget.apply(target, ...args);
-  // };
-  //
-  // const componentWillUnmountTarget = target.prototype.componentWillUnmount;
-  // target.prototype.componentWillUnmount = (...args) => {
-  //   console.log("willUnmount wrapper " + args);
-  //   return componentWillUnmountTarget.apply(target, ...args);
-  // }
+    const componentWillMountTarget = this.componentWillMount || function() {};
+    this.componentWillMount = function() {
+      stores.forEach(store => store.addChangeListener(handleStoresChanged));
+      return componentWillMountTarget.call(this);
+    };
+
+    const componentWillUnmountTarget = this.componentWillUnmount || function() {};
+    this.componentWillUnmount = function() {
+      stores.forEach(store => store.removeChangeListener(handleStoresChanged));
+      return componentWillUnmountTarget.call(this);
+    };
+
+    const handleStoresChanged = () => {
+      this.setState(getState());
+      // ???
+      // this.setState({
+      //   ...this.props,
+      //   ...getState()
+      // });
+    };
+  }
 }
