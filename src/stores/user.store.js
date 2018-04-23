@@ -1,4 +1,4 @@
-import { StoreBasic, createStore } from 'utils/App.utils';
+import { createStore } from 'utils/App.utils';
 import { register } from 'dispatcher';
 
 

@@ -2,11 +2,12 @@ import { dispatch } from 'dispatcher'
 
 const UserActions = {
   loginUser(user) {
-    dispatch({
+	  dispatch({
       type: 'USER-LOGIN-SUCCESS',
       user
     })
   },
+
   logoutUser() {
     dispatch({
       type: 'USER-LOGOUT-SUCCESS'

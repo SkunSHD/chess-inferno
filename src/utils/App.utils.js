@@ -1,23 +1,8 @@
 import { EventEmitter } from 'events';
 
 
-export class StoreBasic extends EventEmitter {
-
-	CHANGE_EVENT = 'change';
-
-	emit() {
-		super.emit(this.CHANGE_EVENT);
-	}
-
-	addChangeListener(callback) {
-		super.on(this.CHANGE_EVENT, callback);
-	}
-
-	removeChangeListener(callback) {
-		super.removeListener(this.CHANGE_EVENT, callback);
-	}
-}
-
+// Assign objects with setters and getters
+// But notice there is good reason why Object.assign does not, it could have weird effects if getters and setters are closures.
 function _extend(target, ...sources) {
 	for (let source of sources)
 		for (let key of Object.keys(source))
@@ -25,12 +10,11 @@ function _extend(target, ...sources) {
 	return target;
 }
 
-
-export function createStore(target) {
+export function createStore(source) {
 	const CHANGE_EVENT = 'change';
 	const emitter = new EventEmitter();
 
-	return _extend(target, {
+	return _extend(Object.create({
 		emitChange() {
 			emitter.emit(CHANGE_EVENT);
 		},
@@ -42,5 +26,5 @@ export function createStore(target) {
 		removeChangeListener(callback) {
 			emitter.removeListener(CHANGE_EVENT, callback);
 		}
-	});
+	}), source);
 }
