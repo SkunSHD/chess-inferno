@@ -10,9 +10,8 @@ const config = {
 	messagingSenderId: "105788159539"
 };
 
-
 firebase.initializeApp(config);
-window.firebase = firebase;
+
 
 const db = {
 	that: this,

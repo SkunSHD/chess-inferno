@@ -1,37 +1,11 @@
 import { BrowserRouter, Link, Route, Switch } from 'inferno-router';
 // source: https://reacttraining.com/react-router/web/example/url-params
 // Components
-import Layout from 'Layout'
-import LoginPage from 'components/Login.component'
+import Layout from 'Layout';
+import LoginPage from 'components/Login.component';
+import VisitorsPage from 'components/Visitors.component';
+import NotFoundPage from 'components/NotFound.component';
 
-const NoMatch = ({ children, match }) => <div>404 Not Found</div>
-
-
-const Home = ({ children, match }) => (
-	<div>Home</div>
-);
-
-
-const Visitors = ({ children, match }) => (
-	<div>
-		<h2>Visitors list</h2>
-		{children}
-	</div>
-);
-
-
-const Visitor = ({ match }) => (
-	<div>
-		<h1>{ match.params.name && `Hello ${match.params.name}!` }</h1>
-	</div>
-);
-
-
-const About = () => (
-	<div>
-		<h2>About</h2>
-	</div>
-);
 
 
 const Navigation = ({ children }) => (
@@ -39,7 +13,6 @@ const Navigation = ({ children }) => (
 		<li><Link to="/">Home</Link></li>
 		<li><Link to="/login">Login</Link></li>
 		<li><Link to="/visitors">Visitors list</Link></li>
-		<li><Link to="/about">About</Link></li>
 		<hr />
 		{children}
 	</ul>
@@ -53,10 +26,8 @@ export default function MyWebsite() {
 				<Switch>
 					<Route exact path="/" component={Layout}/>
 					<Route path="/login" component={LoginPage} />
-					<Route path="/visitors" component={Visitors} />
-					<Route path="/visitor/:name" component={Visitor} />
-					<Route path="/about" component={About}/>
-					<Route component={NoMatch} />
+					<Route path="/visitors" component={VisitorsPage} />
+					<Route component={NotFoundPage} />
 				</Switch>
 			</Navigation>
 		</BrowserRouter>
