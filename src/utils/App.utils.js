@@ -1,16 +1,7 @@
 import { EventEmitter } from 'events';
 
 
-// Assign objects with setters and getters
-// But notice there is good reason why Object.assign does not, it could have weird effects if getters and setters are closures.
-function _extend(target, ...sources) {
-	for (let source of sources)
-		for (let key of Object.keys(source))
-			Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-	return target;
-}
-
-export function createStore(source) {
+export function createStore(store) {
 	const CHANGE_EVENT = 'change';
 	const emitter = new EventEmitter();
 
@@ -26,5 +17,16 @@ export function createStore(source) {
 		removeChangeListener(callback) {
 			emitter.removeListener(CHANGE_EVENT, callback);
 		}
-	}), source);
+	}), store);
+}
+
+
+// Assign objects with setters and getters
+// But notice there is good reason why Object.assign does not, it could have weird effects
+// if getters and setters are closures.
+function _extend(target, ...sources) {
+	for (let source of sources)
+		for (let key of Object.keys(source))
+			Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+	return target;
 }

@@ -2,6 +2,7 @@ import { BrowserRouter, Link, Route, Switch } from 'inferno-router';
 // source: https://reacttraining.com/react-router/web/example/url-params
 // Components
 import Layout from 'Layout'
+import LoginPage from 'components/Login.component'
 
 const NoMatch = ({ children, match }) => <div>404 Not Found</div>
 
@@ -36,6 +37,7 @@ const About = () => (
 const Navigation = ({ children }) => (
 	<ul>
 		<li><Link to="/">Home</Link></li>
+		<li><Link to="/login">Login</Link></li>
 		<li><Link to="/visitors">Visitors list</Link></li>
 		<li><Link to="/about">About</Link></li>
 		<hr />
@@ -50,6 +52,7 @@ export default function MyWebsite() {
 			<Navigation>
 				<Switch>
 					<Route exact path="/" component={Layout}/>
+					<Route path="/login" component={LoginPage} />
 					<Route path="/visitors" component={Visitors} />
 					<Route path="/visitor/:name" component={Visitor} />
 					<Route path="/about" component={About}/>

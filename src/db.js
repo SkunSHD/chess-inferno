@@ -12,20 +12,29 @@ const config = {
 
 
 firebase.initializeApp(config);
-
+window.firebase = firebase;
 
 const db = {
-	firestore: firebase.firestore()
+	that: this,
+	auth: firebase.auth(),
+	firestore: firebase.firestore(),
+	signIn: function({ login, password }) {
+		return this.auth.signInWithEmailAndPassword(login, password);
+	},
+	signOut: function() {
+		return this.auth.signOut();
+	}
 };
 
 
 firebase.auth().onAuthStateChanged(function (_user) {
+	let formattedUser = null;
+
 	if (_user) {
-		const formattedUser = { name: _user.displayName };
-		UserActions.loginUser(formattedUser);
-	} else {
-		UserActions.logoutUser();
+		formattedUser = { name: _user.displayName };
 	}
+
+	UserActions.onAuthStateChanged(formattedUser);
 });
 
 // connect fireBaseUi source here:

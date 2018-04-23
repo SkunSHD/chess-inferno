@@ -16,6 +16,7 @@ const UserStore = createStore({
 
 register(action => {
 	switch (action.type) {
+		case 'USER-ON-AUTH-STATE-CHANGE-SUCCESS':
 		case 'USER-LOGIN-SUCCESS':
 			UserStore.user = action.user;
 			break;
