@@ -2,7 +2,7 @@ import { dispatch } from 'dispatcher'
 import db from 'db';
 
 
-const UserActions = {
+const userActions = {
 	onAuthStateChanged: function (user) {
 		dispatch({
 			type: 'USER-ON-AUTH-STATE-CHANGE-SUCCESS',
@@ -30,4 +30,4 @@ const UserActions = {
 
 };
 
-export default UserActions;
+export default userActions;

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import UserActions from 'actions/user.actions'
+import userActions from 'actions/user.actions'
 
 const config = {
 	apiKey: "AIzaSyCsaEXo297Mo1Js08CUQ9DzWSYqJDQBdRo",
@@ -33,7 +33,7 @@ firebase.auth().onAuthStateChanged(function (_user) {
 		formattedUser = { name: _user.displayName };
 	}
 
-	UserActions.onAuthStateChanged(formattedUser);
+	userActions.onAuthStateChanged(formattedUser);
 });
 
 // connect fireBaseUi source here:

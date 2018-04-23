@@ -1,13 +1,13 @@
 import { Component } from 'inferno';
 import connectToStores from 'utils/connectToStores.mixin';
 // Stores
-import UserStore from 'stores/user.store';
-import UserActions from "./actions/user.actions"
+import userStore from 'stores/user.store';
+import userActions from "./actions/user.actions"
 
 
 function getState() {
 	return {
-		user: UserStore.user
+		user: userStore.user
 	}
 }
 
@@ -18,11 +18,11 @@ class Layout extends Component {
 	constructor() {
 		super();
 		this.state = getState();
-		this.connectToStores([UserStore], getState);
+		this.connectToStores([userStore], getState);
 	}
 
 	get renderSignOut() {
-		return <button onClick={ UserActions.signOut }>SignOut</button>
+		return <button onClick={ userActions.signOut }>SignOut</button>
 	}
 
 	render() {

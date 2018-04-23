@@ -1,5 +1,5 @@
 import { Component } from 'inferno';
-import UserActions from 'actions/user.actions'
+import userActions from 'actions/user.actions'
 
 
 class Login extends Component {
@@ -20,7 +20,7 @@ class Login extends Component {
 
 	onSubmit = async (e) => {
 		const { login, password } = this.state;
-		await UserActions.signIn({ login, password });
+		await userActions.signIn({ login, password });
 		console.log('%%---> redirect')
 	}
 
