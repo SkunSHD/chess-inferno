@@ -13,13 +13,7 @@ export default function connectToStores(target) {
       return componentWillUnmountTarget.call(this);
     };
 
-    const handleStoresChanged = () => {
-      this.setState(getState());
-      // ???
-      // this.setState({
-      //   ...this.props,
-      //   ...getState()
-      // });
-    };
+    const handleStoresChanged = () =>
+        this.setState(getState());
   }
 }
