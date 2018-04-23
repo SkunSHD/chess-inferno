@@ -4,7 +4,6 @@ import connectToStores from 'utils/connectToStores.mixin';
 import UserStore from 'stores/user.store';
 
 
-
 function getState() {
 	return {
 		user: UserStore.user

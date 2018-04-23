@@ -1,5 +1,5 @@
 import { StoreBasic, createStore } from 'utils/App.utils';
-import { register } from 'utils/dispatcher';
+import { register } from 'dispatcher';
 
 
 const UserStore = createStore({

@@ -18,12 +18,19 @@ export class StoreBasic extends EventEmitter {
 	}
 }
 
+function _extend(target, ...sources) {
+	for (let source of sources)
+		for (let key of Object.keys(source))
+			Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+	return target;
+}
+
 
 export function createStore(target) {
 	const CHANGE_EVENT = 'change';
 	const emitter = new EventEmitter();
 
-	return Object.assign(target, {
+	return _extend(target, {
 		emitChange() {
 			emitter.emit(CHANGE_EVENT);
 		},

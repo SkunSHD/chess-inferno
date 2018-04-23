@@ -1,4 +1,4 @@
-import { dispatch } from 'utils/dispatcher'
+import { dispatch } from 'dispatcher'
 
 const UserActions = {
   loginUser(user) {

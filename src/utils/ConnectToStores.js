@@ -7,14 +7,9 @@ class ConnectToStores extends Component {
 
     const handleStoresChanged = () => {
       this.setState(getState());
-      // ???
-      // this.setState({
-      //   ...this.props,
-      //   ...getState()
-      // });
     };
 
-    const componentWillMountChild = this.componentWillMount;
+    const componentWillMountChild = this.componentWillMount || function() {};
     this.componentWillMount = () => {
       stores.forEach(store =>
         store.addChangeListener(handleStoresChanged)
@@ -22,7 +17,7 @@ class ConnectToStores extends Component {
       return componentWillMountChild.call(this);
     };
 
-    const componentWillUnmountChild = this.componentWillUnmount;
+    const componentWillUnmountChild = this.componentWillUnmount || function() {};
     this.componentWillUnmount = () => {
       stores.forEach(store =>
         store.removeChangeListener(handleStoresChanged)
