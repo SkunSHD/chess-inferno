@@ -8,7 +8,7 @@ import NotFoundPage from 'components/NotFound.component';
 
 
 
-const Navigation = ({ children }) => (
+const Header = ({ children }) => (
 	<ul>
 		<li><Link to="/">Home</Link></li>
 		<li><Link to="/login">Login</Link></li>
@@ -22,14 +22,14 @@ const Navigation = ({ children }) => (
 export default function MyWebsite() {
 	return (
 		<BrowserRouter >
-			<Navigation>
+			<Header>
 				<Switch>
 					<Route exact path="/" component={Layout}/>
 					<Route path="/login" component={LoginPage} />
 					<Route path="/visitors" component={VisitorsPage} />
 					<Route component={NotFoundPage} />
 				</Switch>
-			</Navigation>
+			</Header>
 		</BrowserRouter>
 	)
 };

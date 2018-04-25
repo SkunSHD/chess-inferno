@@ -1,5 +1,25 @@
 import { Component } from 'inferno';
 import userActions from 'actions/user.actions'
+import {
+	withRouter
+} from "inferno-router";
+
+
+const AuthButton = withRouter(
+	({history, login, password}) =>
+			<p>
+				Welcome!{" "}
+				<button
+					onClick={async () => {
+						console.log('login, password', login, password)
+						await userActions.signIn({ login, password });
+						history.push("/");
+					}}
+				>
+					Sign in
+				</button>
+			</p>
+	);
 
 
 class Login extends Component {
@@ -18,11 +38,10 @@ class Login extends Component {
 			({[inputName]: e.target.value}));
 
 
-	onSubmit = async (e) => {
-		const { login, password } = this.state;
-		await userActions.signIn({ login, password });
-		console.log('%%---> redirect')
-	}
+	// onSubmit = async (e) => {
+	// 	const { login, password } = this.state;
+	// 	await userActions.signIn({ login, password });
+	// }
 
 
 	render() {
@@ -38,7 +57,8 @@ class Login extends Component {
 				       value={this.state.password}
 				       placeholder='password' />
 
-				<button onClick={ this.onSubmit }>Login</button>
+				{/*<button onClick={ this.onSubmit }>Login</button>*/}
+				<AuthButton {...this.state} />
 			</div>
 		)
 	}
