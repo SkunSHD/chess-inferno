@@ -1,5 +1,6 @@
 var path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	entry: ['babel-polyfill', './src/index.js'],
@@ -10,11 +11,15 @@ module.exports = {
 	},
 	module: {
 		rules: [{
-			test: /\.js$/,
-			use: {
-				loader: 'babel-loader'
-			}
-		}]
+				test: /\.js$/,
+				use: {
+					loader: 'babel-loader'
+				}
+			},
+			{
+				test: /\.css$/,
+				use: [ 'style-loader', 'css-loader' ]
+			}]
 	},
 	resolve: {
 		modules: [
@@ -40,6 +45,7 @@ module.exports = {
 		'firebase': 'firebase'
 	},
 	plugins: [
+		new BundleAnalyzerPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {

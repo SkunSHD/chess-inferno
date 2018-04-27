@@ -29,6 +29,7 @@ class Layout extends Component {
 		return (
 			<div>
 				<h1>Layout!</h1>
+				<button className="pure-button pure-button-primary">A Primary Button</button>
 				<span>User is: { this.state.user && this.state.user.name }</span>
 				{ this.state.user && this.renderSignOut }
 			</div>

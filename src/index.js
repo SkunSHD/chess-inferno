@@ -1,7 +1,8 @@
 import { render } from 'inferno';
 import Routes from 'Routes';
-import {initDevTools} from 'inferno-devtools'
-import db from 'db';
+import { initDevTools } from 'inferno-devtools'
+import 'db';
+import 'css/pure.css';
 
 initDevTools()
 
