@@ -4,6 +4,6 @@ import { initDevTools } from 'inferno-devtools'
 import 'db';
 import 'css/pure.css';
 
-initDevTools()
+initDevTools();
 
 render(<Routes />, document.getElementById('app'));

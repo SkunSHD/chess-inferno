@@ -21,9 +21,11 @@ class Layout extends Component {
 		this.connectToStores([userStore], getState);
 	}
 
+
 	get renderSignOut() {
 		return <button onClick={ userActions.signOut }>SignOut</button>
 	}
+
 
 	render() {
 		return (
