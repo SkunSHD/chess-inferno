@@ -45,7 +45,7 @@ module.exports = {
 		'firebase': 'firebase'
 	},
 	plugins: [
-		new BundleAnalyzerPlugin(),
+		// new BundleAnalyzerPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
