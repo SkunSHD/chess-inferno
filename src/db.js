@@ -22,6 +22,9 @@ const db = {
 	},
 	signOut: function() {
 		return this.auth.signOut();
+	},
+	fetchVisitors: function() {
+		return this.firestore.collection('visitors').get();
 	}
 };
 
@@ -35,6 +38,9 @@ firebase.auth().onAuthStateChanged(function (_user) {
 
 	userActions.onAuthStateChanged(formattedUser);
 });
+
+
+
 
 // connect fireBaseUi source here:
 // https://github.com/SkunSHD/chessrun/blob/master/firebase-auth.tsx

@@ -15,17 +15,17 @@ const userActions = {
 	    const formattedUser = { name: _user.displayName };
 
 	  dispatch({
-          type: 'USER-LOGIN-SUCCESS',
-          user: formattedUser
-       });
+			type: 'USER-LOGIN-SUCCESS',
+			user: formattedUser
+		});
   },
 
    signOut: async function () {
 	   await db.signOut();
 
-	   dispatch({
-           type: 'USER-LOGOUT-SUCCESS'
-       })
+		dispatch({
+			type: 'USER-LOGOUT-SUCCESS'
+		});
    },
 
 };

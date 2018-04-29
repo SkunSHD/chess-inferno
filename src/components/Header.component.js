@@ -1,23 +1,42 @@
 import { Link } from 'inferno-router';
 import { Component } from 'inferno';
 import 'css/nav.css';
+// Store
+import connectToStores from 'utils/connectToStores.mixin';
+import userStore from 'stores/user.store';
 
 
+function getState() {
+	return {
+		user: userStore.user
+	}
+}
+
+
+@connectToStores
 class ResponsiveHeader extends Component {
+
+	constructor() {
+		super();
+		this.state = getState();
+		this.connectToStores([userStore], getState);
+
+	}
 
 	componentDidMount() {
 		this.addToggleLogic();
 	}
 
 	addToggleLogic() {
-		var layout = document.getElementById('layout'),
-			menu     = document.getElementById('menu'),
-			menuLink = document.getElementById('menuLink'),
-			content  = document.getElementById('main'),
-			menuLinks  = document.querySelectorAll('.pure-menu-link');
+		const layout = document.getElementById('layout'),
+			menu      = document.getElementById('menu'),
+			menuLink  = document.getElementById('menuLink'),
+			content   = document.getElementById('main'),
+			menuLis = document.querySelectorAll('.pure-menu-item'),
+			menuLinks = document.querySelectorAll('.pure-menu-link');
 
 		function toggleClass(element, className) {
-			var classes = element.className.split(/\s+/),
+			let classes = element.className.split(/\s+/),
 				length = classes.length,
 				i = 0;
 
@@ -35,61 +54,76 @@ class ResponsiveHeader extends Component {
 			element.className = classes.join(' ');
 		}
 
-		function toggleAll(e, toggleClassName) {
-
+		function toggleAll(e) {
 			e.preventDefault();
-			toggleClass(layout, toggleClassName);
-			toggleClass(menu, toggleClassName);
-			toggleClass(menuLink, toggleClassName);
+			const active = 'active';
+			toggleClass(layout, active);
+			toggleClass(menu, active);
+			toggleClass(menuLink, active);
 		}
 
 		menuLink.onclick = function (e) {
-			toggleAll(e, 'active');
+			toggleAll(e);
 		};
 
 		content.onclick = function(e) {
 			if(menu.className.indexOf('active') !== -1) {
-				toggleAll(e, 'active');
+				toggleAll(e);
 			}
 		};
 
-		menuLinks.forEach((linkItem)=> {
+		function clearActiveLinkClass() {
+			menuLis.forEach(
+				menuLi =>
+					(menuLi.className.indexOf('pure-menu-selected') !== -1) &&
+					menuLi.classList.remove('pure-menu-selected'));
+		}
+
+		menuLinks.forEach((linkItem) => {
 			linkItem.onclick = function(e) {
-				if(linkItem.className.indexOf('pure-menu-selected') !== -1) {
-					toggleAll(e, 'pure-menu-selected');
-				}
+				const parentLi = linkItem.offsetParent;
+				if(parentLi.classList.contains('pure-menu-selected')) return console.log('--> [class already exist]');
+
+				clearActiveLinkClass();
+				parentLi.classList.add('pure-menu-selected');
 			};
 		});
 	}
 
+
 	render() {
 		return(
 			<div id="layout">
-				<a href="#menu" id="menuLink" className="menu-link">
+				<a href="/" id="menuLink" className="menu-link">
 					<span />
 				</a>
 
 				<div id="menu">
-					<div className="pure-menu">
+					<div className="pure-menu height-auto">
 						<a className="pure-menu-heading" href="#">♕ Chess Lessons</a>
 
 						<ul className="pure-menu-list">
 
-							<li className="pure-menu-item">
+							<li className="pure-menu-item height-auto pure-menu-selected">
 								<a className="pure-menu-link">
 									<Link className="nav-link" to="/">Home</Link>
 								</a>
 							</li>
 
-							<li className="pure-menu-item">
+							{ this.state.user &&
+							<li className="pure-menu-item height-auto">
 								<a className="pure-menu-link">
-									<Link className="nav-link" to="/login">Login</Link>
+									<Link className="nav-link" to="/visitors">Visitors</Link>
 								</a>
-							</li>
+							</li> }
 
-							<li className="pure-menu-item menu-item-divided pure-menu-selected">
+							<li className="pure-menu-item height-auto">
 								<a className="pure-menu-link">
-									<Link className="nav-link" to="/visitors">Visitors list</Link>
+									{ this.state.user ?
+										<Link className="nav-link" to="/logout">Logout</Link>
+										:
+										<Link className="nav-link" to="/login">Login</Link>
+									}
 								</a>
 							</li>
 

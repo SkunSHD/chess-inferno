@@ -12,7 +12,7 @@ import NotFoundPage from 'components/NotFound.component';
 	 <BrowserRouter >
 		 <Header>
 			 <Switch>
-				 <Route exact path="/" component={HomePage}/>
+				 <Route exact path="/" component={HomePage} />
 				 <Route path="/login" component={LoginPage} />
 				 <Route path="/visitors" component={VisitorsPage} />
 				 <Route component={NotFoundPage} />

@@ -200,11 +200,13 @@ small screens.
 .menu-link span:after {
     margin-top: 0.6em;
 }
-
+/* chessLessons classes*/
 .nav-link {
     text-decoration: none;
 }
-
+.height-auto {
+    height: auto !important;
+}
 
 
 /* -- Responsive Styles (Media Queries) ------------------------------------- */

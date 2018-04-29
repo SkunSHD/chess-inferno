@@ -11,7 +11,6 @@ function getState() {
 	}
 }
 
-
 @connectToStores
 class Home extends Component {
 

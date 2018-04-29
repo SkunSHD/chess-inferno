@@ -4,6 +4,8 @@ import { EventEmitter } from 'events';
 export function createStore(store) {
 	const CHANGE_EVENT = 'change';
 	const emitter = new EventEmitter();
+	emitter.setMaxListeners(0);
+
 
 	return _extend(Object.create({
 		emitChange() {
